@@ -1,9 +1,10 @@
 import express from "express";
 import { validateSuperHero } from '../validations/validateSuperHero.mjs'
-import { obtenerSuperheroePorIdController, obtenerTodosLosSuperheroesController, insertSuperHeroController, updateSuperHeroController, deleteByIdController, createHeroView} from '../controllers/superheroesController.mjs'
+import { obtenerSuperheroePorIdController, obtenerTodosLosSuperheroesController, insertSuperHeroController, updateSuperHeroController, deleteByIdController, createHeroView, indexView} from '../controllers/superheroesController.mjs'
 
 const router =  express.Router()
 
+router.get('/', indexView)
 router.get('/heroes', obtenerTodosLosSuperheroesController)
 router.get('/heroes/id/:id', obtenerSuperheroePorIdController)
 router.get('/heroes/agregar', createHeroView)

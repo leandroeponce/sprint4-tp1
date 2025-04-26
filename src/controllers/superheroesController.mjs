@@ -9,7 +9,7 @@ export async function obtenerSuperheroePorIdController(req, res) {
             return res.status(404).render('error', { mensaje: 'Superhéroe no encontrado' })
         }
 
-        res.render('editSuperhero', { datos: superheroe, errores: [] })
+        res.render('editSuperhero', { title: "Editar Héroe", datos: superheroe, errores: [] })
     }
     catch (error) {
         res.status(500).render('error', {
@@ -23,7 +23,7 @@ export async function obtenerTodosLosSuperheroesController(req, res) {
     try {
         const superheroes = await getAllSuperHeroes()
 
-        res.render('dashboard', { heroes: superheroes })
+        res.render('dashboard', { heroes: superheroes, title: "Dashboard - Héroes " })
     }
     catch (error)  {
         res.status(500).send({ mensaje: 'Error al obtener los superhéroes', error: error.message })
@@ -123,5 +123,9 @@ export async function deleteByIdController(req, res) {
 }
 
 export async function createHeroView(req, res) {
-    res.render('createsuperhero', { errores: [], datos: {} });  
+    res.render('createsuperhero', { errores: [], datos: {}, title: "Crear Héroe" });  
+}
+
+export async function indexView(req, res) {
+    res.render('index', { errores: [], datos: {}, title: "Inicio" });  
 }
